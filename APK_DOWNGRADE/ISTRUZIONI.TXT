@@ -1,0 +1,37 @@
+apri il prompt dei comandi nella cartella con il file "adb.exe"
+
+(avvia adb)
+adb.exe kill-server
+adb.exe start-server
+adb.exe wait-for-device
+adb.exe devices
+
+(esporta la lista delle app installate)
+adb.exe shell pm list packages -f > _lista-apk.txt
+
+
+(copia l'app originale nella pendrive rinominandola)
+adb.exe pull /data/app/com.whatsapp-iiuHqXSp0MJZHJepE0Ms8Q==/base.apk BACKUP-whatsapp.apk
+
+(disinstalla l'app originale nel device)
+adb.exe shell pm uninstall -k com.whatsapp
+
+(riavvia il device)
+adb.exe reboot now
+
+(installa l'app modificata)
+adb.exe install -r -d OLD-whatsapp.apk
+
+
+fai l'acquisizione "ANDROID BACKUP" con UFED
+
+(se invece vuoi fare il backup da pc senza ufed)
+adb.exe backup -f whatsapp.ab com.whatsapp
+
+(ricollega il telefono al pc)
+adb.exe devices
+
+(installa l'app che c'era prima come se fosse un'aggiornamento)
+adb.exe install -r -d BACKUP-whatsapp.apk
+
+finito
